@@ -1,0 +1,33 @@
+{
+  "name": "ict-autotrade-scanner",
+  "version": "2.0.0",
+  "description": "Jalankan ICT 2022 scanner: deteksi FVG + MSS + OTE lalu eksekusi order di MT5 otomatis. Kirim notifikasi ke Telegram saat setup ditemukan.",
+  "triggers": [
+    "cek sinyal market sekarang",
+    "jalankan scanner ict",
+    "scan market",
+    "cari setup trading",
+    "ict scan",
+    "run scanner",
+    "check market signal",
+    "ada setup?",
+    "scan sekarang"
+  ],
+  "actions": [
+    {
+      "id": "scan_now",
+      "name": "Scan Market Sekarang",
+      "command": "WINEPREFIX=~/.wine_mt5 wine python ~/mt5_openclaw/python/mt5_ict_executor.py",
+      "description": "Scan semua symbol dan eksekusi jika setup ICT terpenuhi"
+    }
+  ],
+  "schedule": [
+    {
+      "cron": "*/15 * * * *",
+      "action": "scan_now",
+      "description": "Auto scan setiap 15 menit (sesuai timeframe M15)"
+    }
+  ],
+  "is_background": false,
+  "requires_confirmation": false
+}

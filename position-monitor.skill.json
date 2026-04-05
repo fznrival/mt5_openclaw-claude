@@ -1,0 +1,27 @@
+{
+  "name": "position-monitor",
+  "version": "1.0.0",
+  "description": "Monitor posisi open di MT5 dan kirim status P&L floating ke Telegram.",
+  "triggers": [
+    "cek posisi",
+    "posisi open",
+    "floating profit",
+    "status trade",
+    "open positions",
+    "berapa floating sekarang",
+    "cek trade aktif"
+  ],
+  "actions": [
+    {
+      "id": "check_positions",
+      "name": "Cek Posisi Open",
+      "command": "WINEPREFIX=~/.wine_mt5 wine python ~/mt5_openclaw/python/position_monitor.py"
+    }
+  ],
+  "schedule": [
+    {
+      "cron": "*/30 * * * *",
+      "description": "Update posisi setiap 30 menit saat market buka"
+    }
+  ]
+}
